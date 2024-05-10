@@ -1,3 +1,25 @@
 <resources>
-    <string name="app_name">Assessment2</string>
+    <string name="app_name">Laundry Winns</string>
+    <string name="laundry_intro">Selamat datang di Laundry Winns, \ntempat terbaik untuk mencuci pakaian Anda!</string>
+    <string name="tentang_aplikasi">Tentang Aplikasi</string>
+    <string name="copyright">Laundry Winns adalah aplikasi Android untuk layanan laundry. Dengan aplikasi ini, Anda dapat dengan mudah menghitung biaya laundry dan menerima diskon jika mencapai 5 kilogram.
+        \n\nCopyright © 2024 Aprilia Maratushsholihah. \nAll rights reserved.</string>
+    <string name="mulai">Mulai</string>
+    <string name="kembali">Kembali</string>
+    <string name="nama_pelanggan">Nama Pelanggan</string>
+    <string name="alamat_pelanggan">Alamat Pelanggan</string>
+    <string name="berat_cucian">Berat Cucian (kg)</string>
+
+    <string name="status_pembayaran">Status Pembayaran:</string>
+    <string name="lunas">Lunas</string>
+    <string name="belum_lunas">Belum Lunas</string>
+    <string name="metode_pembayaran">Metode Pembayaran:</string>
+    <string name="cash" translatable="false">Cash</string>
+    <string name="transfer" translatable="false">Transfer</string>
+
+    <string name="tambah_pesanan">Tambah Pesanan</string>
+    <string name="ubah_pesanan">Ubah Pesanan</string>
+    <string name="simpan">Simpan</string>
+    <string name="list_kosong">Belum ada pesanan</string>
+    <string name="invalid">Nama dan Alamat tidak boleh kosong.</string>
 </resources>
