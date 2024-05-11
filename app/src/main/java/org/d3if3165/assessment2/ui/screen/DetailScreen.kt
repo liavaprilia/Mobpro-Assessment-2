@@ -67,8 +67,6 @@ fun DetailScreen(navController: NavHostController, id: Long? = null) {
 
     var showDialog by remember { mutableStateOf(false) }
 
-//    var namaError by rememberSaveable { mutableStateOf(false) }
-
     LaunchedEffect (true) {
         if (id == null) return@LaunchedEffect
         val data = viewModel.getPelanggan(id) ?: return@LaunchedEffect
@@ -100,7 +98,7 @@ fun DetailScreen(navController: NavHostController, id: Long? = null) {
                 ),
                 actions = {
                     IconButton(onClick = {
-                        if (nama == "" || alamat == "" || beratCucian == "") {
+                        if (nama == "" || alamat == "") {
                             Toast.makeText(context, R.string.invalid, Toast.LENGTH_LONG).show()
                             return@IconButton
                         }
@@ -187,8 +185,6 @@ fun FormPelanggan(
             value = name,
             onValueChange = { onTitleChange(it) },
             label = { Text(text = stringResource(id = R.string.nama_pelanggan)) },
-//            trailingIcon = { IconPicker(isError = namaError, unit = "") },
-//            supportingText = { ErrorHint(namaError)},
             singleLine = true,
             keyboardOptions = KeyboardOptions(
                 keyboardType = KeyboardType.Text,
@@ -201,8 +197,6 @@ fun FormPelanggan(
             value = address,
             onValueChange = { onAddressChange(it) },
             label = { Text(text = stringResource(id = R.string.alamat_pelanggan)) },
-//            trailingIcon = { IconPicker(isError = alamatError, unit = "")},
-//            supportingText = { ErrorHint(alamatError) },
             singleLine = true,
             keyboardOptions = KeyboardOptions(
                 keyboardType = KeyboardType.Text,
