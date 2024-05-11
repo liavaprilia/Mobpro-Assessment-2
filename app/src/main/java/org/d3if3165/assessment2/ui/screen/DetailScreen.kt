@@ -211,23 +211,30 @@ fun FormPelanggan(
                 .padding(vertical = 10.dp),
             shape = RoundedCornerShape(8.dp)
         ) {
-            val beratList = listOf("1-3kg (14.000)", "3-5kg (12.000)", "±6kg (21.000)")
-            beratList.forEach { beratOption ->
-                Row(
-                    verticalAlignment = Alignment.CenterVertically,
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .clickable { onBeratChange(beratOption) }
-                ) {
-                    RadioButton(
-                        selected = beratCucian == beratOption,
-                        onClick = { onBeratChange(beratOption) },
-                    )
-                    Text(
-                        text = beratOption,
-                        style = MaterialTheme.typography.bodyLarge,
-                        modifier = Modifier.padding(start = 8.dp)
-                    )
+            Column {
+                Text(
+                    text = "Harga Cucian",
+                    style = MaterialTheme.typography.titleMedium,
+                    modifier = Modifier.padding(start = 16.dp, top = 8.dp)
+                )
+                val beratList = listOf("1-3kg (14.000)", "3-5kg (12.000)", "±6kg (21.000)")
+                beratList.forEach { beratOption ->
+                    Row(
+                        verticalAlignment = Alignment.CenterVertically,
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .clickable { onBeratChange(beratOption) }
+                    ) {
+                        RadioButton(
+                            selected = beratCucian == beratOption,
+                            onClick = { onBeratChange(beratOption) },
+                        )
+                        Text(
+                            text = beratOption,
+                            style = MaterialTheme.typography.bodyLarge,
+                            modifier = Modifier.padding(start = 8.dp)
+                        )
+                    }
                 }
             }
         }
