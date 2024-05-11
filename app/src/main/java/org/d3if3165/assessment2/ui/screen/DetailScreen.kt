@@ -58,6 +58,8 @@ fun DetailScreen(navController: NavHostController, id: Long? = null) {
     var nama by rememberSaveable { mutableStateOf("") }
     var alamat by rememberSaveable { mutableStateOf("") }
 
+    var showDialog by remember { mutableStateOf(false) }
+
 //    var namaError by rememberSaveable { mutableStateOf(false) }
 
     LaunchedEffect (true) {
@@ -107,7 +109,11 @@ fun DetailScreen(navController: NavHostController, id: Long? = null) {
                         )
                     }
                     if (id != null) {
-                        DeleteAction {
+                        DeleteAction { showDialog = true }
+                        DisplayAlertDialog(
+                            openDialog = showDialog,
+                            onDismissRequest = { showDialog = false }) {
+                            showDialog = false
                             viewModel.delete(id)
                             navController.popBackStack()
                         }
