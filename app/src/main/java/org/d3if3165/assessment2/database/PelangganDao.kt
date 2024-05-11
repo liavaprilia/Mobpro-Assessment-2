@@ -1,11 +1,13 @@
 package org.d3if3165.assessment2.database
 
+import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.Query
 import androidx.room.Update
 import kotlinx.coroutines.flow.Flow
 import org.d3if3165.assessment2.model.Pelanggan
 
+@Dao
 interface PelangganDao {
     @Insert
     suspend fun insert(pelanggan: Pelanggan)
