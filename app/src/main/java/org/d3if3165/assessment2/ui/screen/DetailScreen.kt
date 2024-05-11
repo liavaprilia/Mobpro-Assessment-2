@@ -100,8 +100,10 @@ fun DetailScreen(navController: NavHostController, id: Long? = null) {
                             viewModel.update(id, nama, alamat)
                         }
                         navController.popBackStack() }) {
-                        Icon(imageVector = Icons.Outlined.Check,
-                            contentDescription = stringResource(R.string.simpan)
+                        Icon(
+                            imageVector = Icons.Outlined.Check,
+                            contentDescription = stringResource(R.string.simpan),
+                            tint = MaterialTheme.colorScheme.primary
                         )
                     }
                     if (id != null) {
