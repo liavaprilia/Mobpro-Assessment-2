@@ -213,7 +213,7 @@ fun FormPelanggan(
         ) {
             Column {
                 Text(
-                    text = "Harga Cucian",
+                    text = "Berat Cucian",
                     style = MaterialTheme.typography.titleMedium,
                     modifier = Modifier.padding(start = 16.dp, top = 8.dp)
                 )
