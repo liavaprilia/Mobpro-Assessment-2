@@ -10,4 +10,5 @@ data class Pelanggan(
     val tanggal: String,
     val nama: String,
     val alamat: String,
+    val beratCucian: String
 )

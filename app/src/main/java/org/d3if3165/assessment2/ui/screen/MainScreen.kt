@@ -182,14 +182,17 @@ fun ListItem(pelanggan: Pelanggan, onClick:() -> Unit) {
     ) {
         Text(
             text = pelanggan.nama,
-            maxLines = 1,
+            maxLines = 2,
             overflow = TextOverflow.Ellipsis,
             fontWeight = FontWeight.Bold
         )
         Text(
             text = pelanggan.alamat,
-            maxLines = 2,
+            maxLines = 4,
             overflow = TextOverflow.Ellipsis
+        )
+        Text(
+            text = pelanggan.beratCucian
         )
         Text(
             text = pelanggan.tanggal

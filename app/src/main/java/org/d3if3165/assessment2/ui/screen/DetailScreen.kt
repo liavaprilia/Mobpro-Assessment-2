@@ -2,11 +2,14 @@ package org.d3if3165.assessment2.ui.screen
 
 import android.content.res.Configuration
 import android.widget.Toast
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
@@ -18,7 +21,9 @@ import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.OutlinedCard
 import androidx.compose.material3.OutlinedTextField
+import androidx.compose.material3.RadioButton
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
@@ -30,6 +35,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
@@ -57,6 +63,7 @@ fun DetailScreen(navController: NavHostController, id: Long? = null) {
 
     var nama by rememberSaveable { mutableStateOf("") }
     var alamat by rememberSaveable { mutableStateOf("") }
+    var beratCucian by rememberSaveable { mutableStateOf("") }
 
     var showDialog by remember { mutableStateOf(false) }
 
@@ -67,6 +74,7 @@ fun DetailScreen(navController: NavHostController, id: Long? = null) {
         val data = viewModel.getPelanggan(id) ?: return@LaunchedEffect
         nama = data.nama
         alamat = data.alamat
+        beratCucian = data.beratCucian
     }
 
     Scaffold(
@@ -92,16 +100,17 @@ fun DetailScreen(navController: NavHostController, id: Long? = null) {
                 ),
                 actions = {
                     IconButton(onClick = {
-                        if (nama == "" || alamat == "") {
+                        if (nama == "" || alamat == "" || beratCucian == "") {
                             Toast.makeText(context, R.string.invalid, Toast.LENGTH_LONG).show()
                             return@IconButton
                         }
                         if (id == null) {
-                            viewModel.insert(nama, alamat)
+                            viewModel.insert(nama, alamat, beratCucian)
                         } else {
-                            viewModel.update(id, nama, alamat)
+                            viewModel.update(id, nama, alamat, beratCucian)
                         }
-                        navController.popBackStack() }) {
+                        navController.popBackStack()
+                    }) {
                         Icon(
                             imageVector = Icons.Outlined.Check,
                             contentDescription = stringResource(R.string.simpan),
@@ -127,6 +136,8 @@ fun DetailScreen(navController: NavHostController, id: Long? = null) {
             onTitleChange = { nama = it },
             address = alamat,
             onAddressChange = { alamat = it},
+            beratCucian = beratCucian,
+            onBeratChange = { beratCucian = it },
             modifier = Modifier.padding(padding)
         )
     }
@@ -163,6 +174,7 @@ fun DeleteAction(delete: () -> Unit) {
 fun FormPelanggan(
     name: String, onTitleChange: (String) -> Unit,
     address: String, onAddressChange: (String) -> Unit,
+    beratCucian: String, onBeratChange: (String) -> Unit,
     modifier: Modifier
 ) {
     Column(
@@ -198,6 +210,33 @@ fun FormPelanggan(
             ),
             modifier = Modifier.fillMaxWidth()
         )
+
+        OutlinedCard(
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(vertical = 10.dp),
+            shape = RoundedCornerShape(8.dp)
+        ) {
+            val beratList = listOf("1-3kg (14.000)", "3-5kg (12.000)", "±6kg (21.000)")
+            beratList.forEach { beratOption ->
+                Row(
+                    verticalAlignment = Alignment.CenterVertically,
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .clickable { onBeratChange(beratOption) }
+                ) {
+                    RadioButton(
+                        selected = beratCucian == beratOption,
+                        onClick = { onBeratChange(beratOption) },
+                    )
+                    Text(
+                        text = beratOption,
+                        style = MaterialTheme.typography.bodyLarge,
+                        modifier = Modifier.padding(start = 8.dp)
+                    )
+                }
+            }
+        }
     }
 }
 

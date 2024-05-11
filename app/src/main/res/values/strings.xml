@@ -21,7 +21,7 @@
     <string name="ubah_pesanan">Ubah Pesanan</string>
     <string name="simpan">Simpan</string>
     <string name="list_kosong">Belum ada pesanan</string>
-    <string name="invalid">Nama dan Alamat tidak boleh kosong.</string>
+    <string name="invalid">Nama, Alamat, dan Berat Cucian tidak boleh kosong.</string>
     <string name="lainnya">Opsi lainnya</string>
     <string name="hapus">Hapus Catatan</string>
     <string name="pesan_hapus">Hapus pelanggan ini?</string>
